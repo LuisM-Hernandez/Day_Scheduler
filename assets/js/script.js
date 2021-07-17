@@ -7,9 +7,11 @@ $(document).ready(function () {
     function hours() {
         var currentHours = moment().hours();
         console.log(currentHours);
-        var timeb = $(".time-block")
 
         $(".time-block").each(function () {
+            var blockHour = $(this).attr("id");
+            console.log(blockHour);
+            $(this).addClass("past");
             
         })
     }
