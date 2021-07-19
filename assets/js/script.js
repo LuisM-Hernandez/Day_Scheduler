@@ -5,15 +5,20 @@ $(document).ready(function () {
     // $("#currentDay").text(moment().format("dddd, MMMM Do"));
     $("#currentDay").text(moment().hours());
 
+    $(".saveBtn").on("click", function () {
+        var textEl = $(this).siblings(".description").val()
+        console.log(textEl);
+    })
+
 
     function timeBlocks() {
         var currentHour = moment().hours();
-        console.log(currentHour);
+        // console.log(currentHour);
 
         $(".time-block").each(function () {
             // console.log(this);
             var blockHours = parseInt($(this).attr("id").split("-")[1])
-            console.log(blockHours);
+            // console.log(blockHours);
 
             if (currentHour === blockHours) {
                 $(this).addClass("present");
@@ -24,7 +29,9 @@ $(document).ready(function () {
             else{
                 $(this).addClass("past")
 
-            }    
+            }   
+
+
         })
     }
 
