@@ -2,16 +2,17 @@
 $(document).ready(function () {
 
     //Display the current day
-    // $("#currentDay").text(moment().format("dddd, MMMM Do"));
-    $("#currentDay").text(moment().hours());
+    $("#currentDay").text(moment().format("dddd, MMMM Do"));
 
     $(".saveBtn").on("click", function () {
-        var textEl = $(this).siblings(".description").val()
-        console.log(textEl);
-    })
+        var blockText = $(this).siblings(".description").val()
+        var timeBlock = $(this).parent().attr("id")
+        localStorage.setItem(timeBlock, blockText)
+
+    });
 
 
-    function timeBlocks() {
+    function displayBlocks() {
         var currentHour = moment().hours();
         // console.log(currentHour);
 
@@ -30,12 +31,18 @@ $(document).ready(function () {
                 $(this).addClass("past")
 
             }   
-
-
         })
     }
 
-    timeBlocks()
+
+    for (let i = 9; i < 18; i++) {
+        var hourId = ("#hour-"+i)
+        var storageNum = ("hour-"+i)
+
+        $(hourId + " .description").val(localStorage.getItem(storageNum))
+    }
+
+    displayBlocks()
 
 })
 
